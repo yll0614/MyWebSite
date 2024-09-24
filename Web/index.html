@@ -380,26 +380,6 @@
             });
         });
     </script>
-    <script>
-        function adjustLayout() {
-            const container = document.getElementById('container');
-            const width = window.innerWidth;
-
-            if (width < 600) {
-                container.style.width = '90%'; // 小屏幕宽度
-            } else if (width < 1200) {
-                container.style.width = '80%'; // 中屏幕宽度
-            } else {
-                container.style.width = '60%'; // 大屏幕宽度
-            }
-        }
-
-        // 初始调整
-        adjustLayout();
-
-        // 监听窗口大小变化
-        window.addEventListener('resize', adjustLayout);
-    </script>
 </body>
 
 </html>
