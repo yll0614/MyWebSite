@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #ff7e5f;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 10px 0 20px;
+        }
+
+        .button {
+            background-color: #ff7e5f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none; /* 去除下划线 */
+            margin: 5px; /* 按钮间距 */
+        }
+
+        .button:hover {
+            background-color: #ff5e3a;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>404</h1>
+    <p>哎呀！页面未找到</p>
+    <p>您请求的页面不存在或已被移除。</p>
+    <a href="index.html" class="button">返回主页</a>
+    <a href="javascript:history.back()" class="button">返回上一页</a>
+
+</body>
+</html>
