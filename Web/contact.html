@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我</title>
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 图标按钮样式 */
+        .menu-button {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            transition: transform 0.3s ease;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+
+        .menu-button i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .menu-button:hover i {
+            color: #ff7e5f;
+        }
+
+        /* 全局样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            /* 背景渐变 */
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* 防止水平滚动 */
+        }
+
+        /* 顶栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            /* 半透明背景 */
+            backdrop-filter: blur(10px);
+            /* 背景模糊效果 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            /* 轻微阴影 */
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* LOGO样式 */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* 导航链接样式 */
+        header a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        /* 导航链接悬停效果 */
+        header a:hover {
+            color: #ff7e5f;
+        }
+
+        /* 主内容样式 */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 100px;
+            /* 顶栏占位 */
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* 联系信息样式 */
+        .contact-info {
+            margin: 20px 0;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        /* 联系信息项样式 */
+        .contact-info div {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 联系信息动画延时 */
+        .contact-info div:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+
+        .contact-info div:nth-child(2) {
+            animation-delay: 0.9s;
+        }
+
+        .contact-info div:nth-child(3) {
+            animation-delay: 1.2s;
+        }
+
+        /* 图标样式 */
+        .icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 全局样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            /* 背景渐变 */
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* 顶栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            /* 半透明背景 */
+            backdrop-filter: blur(10px);
+            /* 背景模糊效果 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            /* 轻微阴影 */
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* LOGO样式 */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s forwards;
+        }
+
+        /*导航栏链接样式*/
+        header a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            animation: fadeInUp 1s forwards;
+        }
+
+        header a:hover {
+            color: #ff7e5f;
+        }
+
+        /* 主内容样式 */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 100px;
+            /* 顶栏占位 */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin: 20px 0;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .contact-info div {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 图标样式 */
+        .icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info {
+                font-size: 1.2rem;
+            }
+        }
+
+        header a.active {
+            color: #ff7e5f;
+            /* 当前页面链接的颜色 */
+        }
+    </style>
+    <title>联系我</title>
+    <link href="./Img/Icon.svg" rel="shortcut icon" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">洛洛</a>
+            <div>
+                <a href="index.html">主页</a>
+                <a href="about.html">关于</a>
+                <a href="contact.html">联系我</a>
+                <a href="login.html" class="menu-button"><i class="fas fa-ellipsis-v"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>联系我</h1>
+        <div class="contact-info">
+            <div>
+                <img src="Img/QQ.png" class="icon" alt="QQ 图标">
+                QQ: 2443958507
+            </div>
+            <div>
+                <i class="fab fa-weixin icon"></i>
+                微信: Yueyuez0614/jy15727773068
+            </div>
+            <div>
+                <img src="Img/Phone.png" class="icon" alt="电话图标">
+                电话: 157-2777-3068
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = window.location.href; // 获取当前页面的URL
+            const navLinks = document.querySelectorAll('header nav a:not(.logo)'); // 获取所有导航链接，但不包括logo
+
+            navLinks.forEach(link => {
+                if (link.href === currentLocation) {
+                    link.classList.add('active'); // 给当前链接添加active类
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

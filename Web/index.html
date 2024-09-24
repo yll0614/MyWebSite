@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link href="./Img/Icon.svg" rel="shortcut icon" />
+    <style>
+        /* 图标按钮样式 */
+        .menu-button {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            transition: transform 0.3s ease;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+
+        .menu-button i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .menu-button:hover i {
+            color: #ff7e5f;
+        }
+
+        /* 卡片容器的动画 */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        /* 卡片标题和按钮的动画 */
+        .card-title,
+        .card-button {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /*顶栏样式*/
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s forwards;
+        }
+
+        header a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            animation: fadeInUp 1s forwards;
+        }
+
+        header a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff7e5f;
+            left: 50%;
+            bottom: -5px;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        header a:hover::after {
+            width: 100%;
+        }
+
+        header a:hover {
+            color: #ff7e5f;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            /* Ensure there's space at the bottom */
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s forwards;
+            animation-delay: 0.3s;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.6s;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding-bottom: 100px;
+            position: relative;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .card-button {
+            background-color: #ff7e5f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: #ff5e3a;
+            transform: scale(1.05);
+        }
+
+        .load-more {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 20px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin: 20px auto;
+            width: 200px;
+            display: none;
+            /* 默认隐藏 */
+        }
+
+        .show {
+            display: block;
+            /* 显示按钮 */
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header a.active {
+            color: #ff7e5f;
+            /* 当前页面链接的颜色 */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">洛洛</a>
+            <div>
+                <a href="index.html">主页</a>
+                <a href="about.html">关于</a>
+                <a href="contact.html">联系我</a>
+                <a href="login.html" class="menu-button"><i class="fas fa-ellipsis-v"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div>
+            <h1>欢迎来到我的主页</h1>
+            <p>我提供一些爱心网页的服务。</p>
+        </div>
+
+        <div class="card-container" id="card-container">
+            <!-- 为防止重复显示 初始不显示卡片
+            <div class="card">
+                <h3 class="card-title">标题 1</h3>
+                <img src="https://via.placeholder.com/150" alt="图片 1">
+                <button class="card-button">按钮 1</button>
+            </div>
+            -->
+        </div>
+
+        <div class="load-more" id="load-more">
+            加载更多...
+        </div>
+    </main>
+
+    <script>
+        const cards = [
+            { title: 'Love 旋转爱心', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/Love 旋转爱心/index.html' },
+            { title: '动态爱心', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/动态爱心/index.html' },
+            { title: '动态爱心 文字', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/动态爱心 文字/index.html' },
+            { title: '双爱心+文字', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/双爱心+文字/index.html' },
+            { title: '心跳加速', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/心跳加速/index.html' },
+            { title: '流动爱心 -文字', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/流动爱心 -文字/index.html' },
+            { title: '满屏爱心', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/满屏爱心/index.html' },
+            { title: '爱心 生日快乐', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/爱心 生日快乐/index.html' },
+            { title: '爱心背景', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/爱心背景/index.html' },
+            { title: '粒子 在一起', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/粒子 在一起/index.html' },
+            { title: '多语言我爱你', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/多语言我爱你.html' },
+            { title: '满屏文字+爱心', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/满屏文字+爱心.html' },
+            { title: '爱心+背景掉落效果', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/爱心+背景掉落效果.html' },
+            { title: '爱心+iloveyou', img: 'https://via.placeholder.com/150', button: '我选这个', link: './爱心/爱心+iloveyou.html' }
+
+            // 更多卡片...
+        ];
+
+        let currentCardIndex = 0;
+        const initialLoadCount = 10;   // 初始加载的卡片数量
+
+        function loadMoreCards() {
+            const cardContainer = document.getElementById('card-container');
+            for (let i = 0; i < initialLoadCount; i++) {
+                if (currentCardIndex >= cards.length) return; // 如果没有更多卡片，返回
+                const card = cards[currentCardIndex++];
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                cardElement.innerHTML = `
+                    <div class="card-title">${card.title}</div>
+                    <img src="${card.img}" alt="${card.title}">
+                    <button class="card-button" onclick="window.open('${card.link}', '_blank')">${card.button}</button>
+                `;
+                cardContainer.appendChild(cardElement);
+            }
+            if (currentCardIndex >= cards.length) {
+                document.getElementById('load-more').classList.remove('show');
+            }
+        }
+
+        function handleScroll() {
+            const loadMoreButton = document.getElementById('load-more');
+            const rect = loadMoreButton.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                loadMoreCards();
+                loadMoreButton.classList.remove('show');
+            } else {
+                loadMoreButton.classList.add('show');
+            }
+        }
+
+        document.getElementById('load-more').addEventListener('click', () => {
+            loadMoreCards();
+            handleScroll();
+        });
+
+        window.addEventListener('scroll', handleScroll);
+
+        // 初始加载
+        loadMoreCards();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = window.location.href; // 获取当前页面的URL
+            const navLinks = document.querySelectorAll('header nav a:not(.logo)'); // 获取所有导航链接，但不包括logo
+
+            navLinks.forEach(link => {
+                if (link.href === currentLocation) {
+                    link.classList.add('active'); // 给当前链接添加active类
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
