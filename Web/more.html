@@ -167,6 +167,29 @@
         header a.active {
             color: #ff7e5f; /* 当前页面链接的颜色 */
         }
+          /* 响应式设计 */
+          @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            header nav {
+                flex-direction: column;
+            }
+
+            header a {
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 
